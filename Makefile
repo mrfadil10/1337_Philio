@@ -6,7 +6,7 @@
 #    By: mfadil <mfadil@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/17 10:59:16 by mfadil            #+#    #+#              #
-#    Updated: 2023/06/17 14:04:59 by mfadil           ###   ########.fr        #
+#    Updated: 2023/07/04 22:49:50 by mfadil           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,33 +15,31 @@ CFLAGS	= -Wall -Wextra -Werror
 NAME	= philo
 O_PATH	= obj/
 
-LIBFT_LIB = Libft/libft.a
-
 SRC		=		life_cycle.c \
-				tools.c \
+				dead_philo.c \
+				philo_tools.c \
 				start.c \
+				utils.c \
 				main.c
 
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(O_PATH), $(OBJ))
 
+GLOBAL_DEP = Makefile \
+			 philos.h \
+
 all: $(NAME)
 
-$(O_PATH)%.o: %.c philos.h ./Libft/libft.h
+$(O_PATH)%.o: %.c $(GLOBAL_DEP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT_LIB)
-	$(CC) $(OBJS) Libft/libft.a -o $(NAME)
+$(NAME): $(OBJS) $(GLOBAL_DEP)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -rf ./obj/*.o
-	make -C Libft clean
-
-$(LIBFT_LIB) :
-	make -C Libft
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f ./Libft/libft.a
 
 re: fclean all
