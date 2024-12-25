@@ -36,15 +36,17 @@ make
 ## Project Structure
 ```
 philosophers/
-├── src/
-│   ├── main.c
-│   ├── init.c
-│   ├── monitor.c
-│   ├── routines.c
-│   └── utils.c
-├── include/
-│   └── philosophers.h
-└── Makefile
+├── Libft/
+├── obj/
+├── Makefile
+├── dead_philo.c
+├── life_cycle.c
+├── main.c
+├── philo_tools.c
+├── start.c
+├── utils.c
+├── main.c
+└── Readme.md
 ```
 
 ## Technical Details
